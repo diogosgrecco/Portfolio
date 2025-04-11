@@ -1,3 +1,10 @@
+/*
+===============================================================================
+Stored Procedure: Load csv source files into tables as is
+===============================================================================
+Parameters: none
+===============================================================================
+*/
 CREATE OR ALTER PROCEDURE bronze.load_bronze AS
 BEGIN
 	DECLARE @start_time DATETIME, @end_time DATETIME
