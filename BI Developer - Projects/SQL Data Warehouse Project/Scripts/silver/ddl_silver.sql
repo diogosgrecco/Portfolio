@@ -117,7 +117,7 @@ CREATE TABLE silver.crm_sales_details (
 	dwh_create_date DATETIME2 DEFAULT GETDATE()
 )
 
-	INSERT INTO silver.crm_sales_details (
+INSERT INTO silver.crm_sales_details (
 	sls_ord_num,
 	sls_prd_key,
 	sls_cust_id,
@@ -163,6 +163,24 @@ CREATE TABLE silver.erp_cust_az12 (
 	dwh_create_date DATETIME2 DEFAULT GETDATE()
 )
 
+INSERT INTO silver.erp_cust_az12 (
+	cid,
+	bdate,
+	gen
+)
+SELECT
+	CASE WHEN cid LIKE 'NAS%' THEN SUBSTRING(cid,4,LEN(cid))
+	ELSE cid
+	END cid,
+	CASE WHEN bdate > GETDATE() THEN NULL
+	ELSE bdate
+	END bdate,
+	CASE WHEN UPPER(TRIM(gen)) IN ('F', 'FEMALE') THEN 'Female'
+		WHEN UPPER(TRIM(gen)) IN ('M', 'MALE') THEN 'Male'
+		ELSE 'n/a'
+	END gen
+FROM bronze.erp_cust_az12
+
 IF OBJECT_ID('silver.erp_loc_a101', 'U') IS NOT NULL
 	DROP TABLE silver.erp_loc_a101
 GO
@@ -172,6 +190,19 @@ CREATE TABLE silver.erp_loc_a101 (
 	cntry VARCHAR(50),
 	dwh_create_date DATETIME2 DEFAULT GETDATE()
 )
+
+INSERT INTO silver.erp_loc_a101 (
+	cid,
+	cntry
+)
+SELECT 
+	REPLACE(cid,'-','') cid,
+	CASE WHEN TRIM(cntry) = 'DE' THEN 'Germany'
+		WHEN TRIM(cntry) IN ('US', 'USA') THEN 'United States'
+		WHEN TRIM(cntry) ='' THEN 'n/a'
+		ELSE TRIM(cntry)
+		END cntry
+FROM bronze.erp_loc_a101
 
 IF OBJECT_ID('silver.erp_px_cat_g1v2', 'U') IS NOT NULL
 	DROP TABLE silver.erp_px_cat_g1v2
@@ -184,3 +215,13 @@ CREATE TABLE silver.erp_px_cat_g1v2 (
 	maintenance VARCHAR(50),
 	dwh_create_date DATETIME2 DEFAULT GETDATE()
 )
+
+INSERT INTO silver.erp_px_cat_g1v2 (
+	id,
+	cat,
+	subcat,
+	maintenance
+)
+SELECT
+	*
+FROM bronze.erp_px_cat_g1v2
