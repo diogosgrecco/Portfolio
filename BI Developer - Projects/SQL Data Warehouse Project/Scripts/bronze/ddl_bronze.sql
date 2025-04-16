@@ -24,7 +24,7 @@ CREATE TABLE bronze.crm_cust_info (
 )
 
 IF OBJECT_ID('bronze.crm_prd_info', 'U') IS NOT NULL
-	DROP TABLE bronze.crm_cust_info
+	DROP TABLE bronze.crm_prd_info
 GO
 
 CREATE TABLE bronze.crm_prd_info (
@@ -38,7 +38,7 @@ CREATE TABLE bronze.crm_prd_info (
 )
 
 IF OBJECT_ID('bronze.crm_sales_details', 'U') IS NOT NULL
-	DROP TABLE bronze.crm_cust_info
+	DROP TABLE bronze.crm_sales_details
 GO
 
 CREATE TABLE bronze.crm_sales_details (
