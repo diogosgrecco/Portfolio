@@ -26,7 +26,7 @@ BEGIN
 		cst_key, 
 		cst_firstname, 
 		cst_lastname, 
-		cst_maerital_status, 
+		cst_marital_status, 
 		cst_gndr, 
 		cst_create_date
 	)
@@ -35,11 +35,11 @@ BEGIN
 		cst_key,
 		TRIM(cst_firstname) cst_firstname,
 		TRIM(cst_lastname) cst_lastname,
-		CASE UPPER(TRIM(cst_maerital_status)) 
+		CASE UPPER(TRIM(cst_marital_status)) 
 			WHEN 'S' THEN 'Single'
 			WHEN 'M' THEN 'Married'
 			ELSE 'n/a'
-			END cst_maerital_status,
+			END cst_marital_status,
 		CASE WHEN UPPER(TRIM(cst_gndr)) = 'F' THEN 'Female'
 			WHEN UPPER(TRIM(cst_gndr)) = 'M' THEN 'Male'
 			ELSE 'n/a'
