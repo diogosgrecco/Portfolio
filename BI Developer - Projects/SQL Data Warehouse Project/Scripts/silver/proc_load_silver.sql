@@ -196,7 +196,7 @@ BEGIN
 
 
 	SET @start_time=GETDATE()		
-	TRUNCATE TABLE silver.erp_loc_a101
+	TRUNCATE TABLE silver.erp_px_cat_g1v2
 	INSERT INTO silver.erp_px_cat_g1v2 (
 		id,
 		cat,
