@@ -77,7 +77,7 @@ BEGIN
 	SELECT 
 		prd_id,
 		REPLACE(SUBSTRING(prd_key, 1, 5),'-','_') cat_id,
-		REPLACE(SUBSTRING(prd_key, 7, LEN(prd_key)),'-','_') prd_key,
+		REPLACE(SUBSTRING(prd_key, 7, LEN(prd_key)) prd_key,
 		prd_nm,
 		ISNULL(prd_cost,0) prd_cost,
 		CASE UPPER(TRIM(prd_line)) 
