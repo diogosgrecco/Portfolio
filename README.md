@@ -12,8 +12,3 @@ A robust ELT pipeline processing millions of NYC Taxi records.
 * **Optimization:** Star Schema modeling for high-performance reporting.
 
 [**👉 Click here to view the code and documentation**](https://github.com/diogosgrecco/nyc-taxi-etl-pipeline)
-
----
-
-## 📊 Business Intelligence Projects
-*(You can add descriptions for your Power BI folders here later)*
